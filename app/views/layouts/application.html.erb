@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Institution" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails3 Bootstrap Devise Cancan" %>">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= yield(:head) %>
+  </head>
+  <body class="<%= controller_name %> <%= action_name %>">
+    <div class="navbar navbar-fixed-top">
+      <nav class="navbar-inner">
+        <div class="container">
+          <%= render 'layouts/navigation' %>
+        </div>
+      </nav>
+    </div>
+    <div id="main" role="main">
+      <div class="container">
+        <div class="content">
+           <div class="row">
+            <div class="span12">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            </div>
+          </div>
+          <footer>
+          </footer>
+        </div>
+ <STYLE type="text/css">
+    <%= Rails3BootstrapDeviseCancan::Application.assets["css/adminbootstrap.css"].to_s.html_safe %>
+   </STYLE>
+ <div class="span3" id="sidebar">
+                    <ul class="nav bs-docs-sidenav nav-stacked nav-collapse">
+                        <li class="">
+                            <a href="#"> Dashboard &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-right"></span></a>
+                        </li>
+                        <%if request.path.include?("members")%>
+                        <li class="side-navbar">
+                        <%else%>
+                        <li>
+                        <%end%>
+                            <a data-no-turbolink href="<%=courses_path%>"><span class="badge badge-success pull-right"></span> Courses </a>
+                        </li>
+                       
+                    </ul>
+                </div>
+
+
+      </div> <!--! end of .container -->
+    </div> <!--! end of #main -->
+  </body>
+</html>
